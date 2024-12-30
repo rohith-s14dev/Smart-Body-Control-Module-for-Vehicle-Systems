@@ -23,33 +23,8 @@ Key Components
     CAN Bus Network: The communication backbone that connects all ECUs in the vehicle.
     User Interface: A software or hardware interface used to interact with the BCM for configuration, diagnostics, and real-time monitoring.
 
-Project Structure:
-
-Smart_BCM_Project/
-│
-├── docs/                    # Documentation files
-│   ├── installation.md      # Installation guide
-│   └── user_manual.md       # User manual for operating the system
-│
-├── firmware/                # Firmware code for the Smart BCM
-│   ├── main.c               # Main control logic of the module
-│   ├── can_communication.c  # CAN protocol implementation
-│   ├── body_control.c       # Functions for controlling body components
-│   └── diagnostics.c        # Real-time diagnostic functions
-│
-├── hardware/                # Schematics and design files for hardware
-│   ├── bcm_schematic.pdf    # Schematic diagram for the BCM hardware
-│   └── pcb_layout.pdf       # PCB layout files for the module
-│
-├── tests/                   # Unit tests and integration tests
-│   ├── can_tests.c          # Unit tests for CAN communication
-│   ├── bcm_tests.c          # Unit tests for BCM functionalities
-│   └── system_integration.c # End-to-end system test scenarios
-│
-├── examples/                # Example applications using the BCM module
-│   └── example_control.c    # Example code for controlling lights, windows, etc.
-│
-└── README.md                # Project overview and setup instructions
+src                      # project files
+README.md                # Project overview and setup instructions
 
 Requirements
 
