@@ -1,64 +1,93 @@
-# Smart-Body-Control-Module-for-Vehicle-Systems
+Smart Body Control Module for Vehicle Systems.
 
-Project Overview:
+Introduction:
 
-This project aims to develop a Smart Body Control Module (BCM) for vehicle systems using the Controller Area Network (CAN) protocol. The BCM is a critical component in modern vehicles, managing various functions such as lighting, window control, power seats, wipers, and more. By leveraging CAN bus communication, this system ensures efficient, real-time control and monitoring of vehicle subsystems, improving both performance and safety.
+This project showcases the development of a Body Control Module (BCM) utilizing CAN (Controller Area Network) communication with ARM microcontrollers. The BCM manages the operation of the left and right turn signals as well as the windshield wiper system in the automobile. This setup consists of a network of four nodes, with one node functioning as the transmitter and the other three nodes serving as receivers.
 
-The Smart BCM communicates with various ECUs (Electronic Control Units) in the vehicle to monitor and control devices, responding to driver inputs or environmental conditions. Through a user-friendly interface, the system also provides diagnostics and real-time feedback, offering enhanced capabilities for maintenance and troubleshooting.
+System Overview:
 
-Features:
+1.Establish CAN communication among the nodes. 
 
-    CAN Bus Communication: Efficient message exchange between various vehicle subsystems.
-    Control Functions: Manage lighting, windows, wipers, power seats, and other body control systems.
-    Real-time Diagnostics: Monitor system health and provide error messages.
-    Security & Safety: Integrate safety features such as seat belt reminders, door status monitoring, and emergency lighting.
-    User Interface: Simple interface for configuration, diagnostics, and status monitoring.
-    Extendable Architecture: The system is modular and can be easily extended to control additional components in the vehicle.
+2.Send and receive data frames through the CAN protocol.
 
-Key Components
+3.Operate the vehicle's indicators and wipers in response to CAN messages.
 
-    Microcontroller (MCU): The central unit that handles all the control logic, processing CAN messages, and executing commands.
-    CAN Transceiver: A hardware component that interfaces between the MCU and the CAN bus for message transmission and reception.
-    Sensors and Actuators: Various physical components such as temperature sensors, light sensors, switches, motors, and relays controlled via the BCM.
-    CAN Bus Network: The communication backbone that connects all ECUs in the vehicle.
-    User Interface: A software or hardware interface used to interact with the BCM for configuration, diagnostics, and real-time monitoring.
+4.Present pertinent information through UART and LCD screens.
 
-src                      # project files
-README.md                # Project overview and setup instructions
+Implementation:
 
-Requirements
+Node A (Transmitter): Tracks the status of the switches and transmits CAN messages to the receiver nodes.  
 
-    Hardware:
-        Microcontroller (e.g., STM32, Arduino, or Raspberry Pi)
-        CAN Transceiver Module (e.g., MCP2551)
-        Sensors and actuators as needed for specific vehicle functions (e.g., window motors, wipers, lights)
-    Software:
-        C/C++ programming environment for embedded systems
-        CAN bus library compatible with the chosen MCU (e.g., HAL for STM32 or Arduino CAN library)
-        Integrated development environment (IDE) like STM32CubeIDE, Arduino IDE, or similar Usage.
+Node B (Receiver): Operates the right indicator according to the received CAN messages.  
 
-    Controlling Vehicle Functions: Use the user interface to send commands to control subsystems such as lighting, window motors, and power seats.
+Node C (Receiver): Operates the left indicator based on the received CAN messages.  
 
-    Monitoring System Status: View real-time diagnostic information, including error codes, voltage levels, and component status.
+Node D (Receiver): Manages the wiper functionality using the received CAN messages.  
 
-    Customization: Modify the firmware to extend the functionality of the BCM, such as adding new control functions or integrating additional sensors.
+Steps to be Followed:
 
-Contribution:
+Step 1: Set Up the Hardware  
 
-We welcome contributions! If you would like to improve this project, feel free to fork the repository, create a new branch, and submit a pull request.
-How to Contribute:
+Assemble the Nodes:  
+-> Attach CAN transceivers to each ARM microcontroller development board.  
+-> Connect switches to the transmitter node (Node A).  
+-> Connect LEDs to Node B and Node C for the right and left indicators, respectively.  
+-> Attach a motor or servo to Node D for controlling the wiper.  
+-> Connect an LCD display and a UART communication module to Node A.
 
-    Fork the repository.
-    Create a new feature branch (git checkout -b feature-name).
-    Make your changes.
-    Commit your changes (git commit -am 'Add feature').
-    Push to your fork (git push origin feature-name).
-    Open a pull request.
+Power Supply:  
+-> Make sure all nodes are equipped with a stable power supply.
 
-License:
+Step 2: Set Up CAN Communication  
+Initialize CAN Transceivers:  
+Configure the CAN transceivers for every node.  
+Establish the CAN baud rate along with any other required settings.  
+Develop CAN Protocol:  
+Specify the structure of the CAN message.  
+Create functionality in Node A for sending CAN messages.  
+Create functionality in Nodes B, C, and D for receiving CAN messages.  
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-Acknowledgements
+Step 3: Program Each Node 
 
-    The CAN protocol specification is provided by Bosch.
-    Special thanks to the open-source communities for CAN libraries and embedded development tools.
+Node A (Transmitter):  
+-> Track the status of switches.  
+-> Transmit the relevant CAN messages according to the status of the switches.  
+-> Show status messages on the LCD as well as through UART.  
+
+Node B (Right Indicator Receiver):  
+-> Receive the CAN messages.  
+-> Activate the right indicator LED based on the messages received.  
+
+Node C (Left Indicator Receiver):  
+-> Receive the CAN messages.  
+-> Activate the left indicator LED based on the messages received.  
+
+Node D (Wiper Receiver):  
+-> Receive the CAN messages.  
+-> Manage the wiper motor or servo according to the messages received.
+
+Step 4: Testing and Debugging  
+
+Evaluate Individual Nodes:  
+-> Assess each node separately to confirm they function correctly.  
+
+Examine Communication:  
+-> Test the CAN communication among the nodes.  
+-> Ensure that Node A successfully transmits messages and that Nodes B, C, and D accurately receive and respond to these messages.  
+
+Troubleshoot Problems:  
+-> Utilize debugging tools to detect and resolve any issues related to communication or control logic.  
+
+Step 5: Final Integration  
+
+Connect All Nodes:  
+-> Link all nodes together through the CAN bus.  
+-> Confirm proper communication and control across all nodes.  
+
+Final Evaluation:  
+-> Perform thorough testing to verify that the entire system operates as intended.  
+-> Make any required modifications based on the test outcomes.
+
+Conclusion:
+
+This project effectively illustrates the application of the CAN protocol for node communication within an embedded system. The system can send and receive data frames, manage external devices, and offer feedback via UART and LCD interfaces. This implementation can be developed further for more intricate uses in automotive and industrial systems. 
